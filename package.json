@@ -1,0 +1,56 @@
+{
+  "name": "webull-api-ts",
+  "version": "0.0.1",
+  "description": "Webull trading API for node-js",
+  "main": "./dist/index.js",
+  "files": [
+		"/dist/index.js",
+		"/dist/index.d.ts",
+    "/dist/utils"
+  ],
+  "scripts": {
+    "test": "npx mocha dist/tests",
+    "doc": "npx typedoc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/edmundpf/webull-api-ts.git"
+  },
+  "keywords": [
+    "trading",
+    "nyse",
+    "webull",
+    "robinhood",
+    "stocks",
+    "finance",
+    "options",
+    "futures"
+  ],
+  "author": "Edmund Pfeil <edmundpf@buffalo.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edmundpf/webull-api-ts/issues"
+  },
+  "homepage": "https://github.com/edmundpf/webull-api-ts#readme",
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/chai": "*",
+    "@types/inquirer": "^6.5.0",
+    "@types/md5": "^2.1.33",
+    "@types/mocha": "*",
+    "@types/node": "*",
+    "chai": "*",
+    "mocha": "*",
+    "typedoc": "*",
+    "typedoc-plugin-markdown": "*"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "date-fns": "^2.10.0",
+    "inquirer": "^7.0.6",
+    "json-config-ts": "^1.0.1",
+    "md5": "^2.2.1",
+    "serialize-error": "^5.0.0",
+    "uuidv4": "^6.0.6"
+  }
+}
