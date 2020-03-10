@@ -42,7 +42,7 @@ Endpoints class
 
 \+ **new Endpoints**(): *[Endpoints](_utils_endpoints_.endpoints.md)*
 
-*Defined in [utils/Endpoints.ts:15](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L15)*
+*Defined in [utils/Endpoints.ts:15](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L15)*
 
 Constructor
 
@@ -54,7 +54,7 @@ Constructor
 
 • **infoUrl**: *string*
 
-*Defined in [utils/Endpoints.ts:7](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L7)*
+*Defined in [utils/Endpoints.ts:7](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L7)*
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 • **optionsGwUrl**: *string*
 
-*Defined in [utils/Endpoints.ts:9](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L9)*
+*Defined in [utils/Endpoints.ts:9](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L9)*
 
 ___
 
@@ -70,7 +70,7 @@ ___
 
 • **optionsUrl**: *string*
 
-*Defined in [utils/Endpoints.ts:8](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L8)*
+*Defined in [utils/Endpoints.ts:8](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L8)*
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 • **quotesUrl**: *string*
 
-*Defined in [utils/Endpoints.ts:10](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L10)*
+*Defined in [utils/Endpoints.ts:10](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L10)*
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 • **securitiesUrl**: *string*
 
-*Defined in [utils/Endpoints.ts:11](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L11)*
+*Defined in [utils/Endpoints.ts:11](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L11)*
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 • **tradeBrokerUrl**: *string*
 
-*Defined in [utils/Endpoints.ts:15](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L15)*
+*Defined in [utils/Endpoints.ts:15](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L15)*
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 • **tradeUrl**: *string*
 
-*Defined in [utils/Endpoints.ts:12](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L12)*
+*Defined in [utils/Endpoints.ts:12](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L12)*
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 • **userBrokerUrl**: *string*
 
-*Defined in [utils/Endpoints.ts:14](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L14)*
+*Defined in [utils/Endpoints.ts:14](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L14)*
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 • **userUrl**: *string*
 
-*Defined in [utils/Endpoints.ts:13](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L13)*
+*Defined in [utils/Endpoints.ts:13](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L13)*
 
 ## Methods
 
@@ -126,7 +126,7 @@ ___
 
 ▸ **account**(`id`: string): *string*
 
-*Defined in [utils/Endpoints.ts:37](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L37)*
+*Defined in [utils/Endpoints.ts:37](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L37)*
 
 Account
 
@@ -144,7 +144,7 @@ ___
 
 ▸ **accountId**(): *string*
 
-*Defined in [utils/Endpoints.ts:45](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L45)*
+*Defined in [utils/Endpoints.ts:45](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L45)*
 
 Account ID
 
@@ -156,7 +156,7 @@ ___
 
 ▸ **login**(): *string*
 
-*Defined in [utils/Endpoints.ts:53](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L53)*
+*Defined in [utils/Endpoints.ts:53](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L53)*
 
 Login
 
@@ -168,7 +168,7 @@ ___
 
 ▸ **orders**(`id`: string, `dateString`: string, `pageSize`: string, `createTime`: string): *string*
 
-*Defined in [utils/Endpoints.ts:61](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L61)*
+*Defined in [utils/Endpoints.ts:61](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L61)*
 
 Orders
 
@@ -189,7 +189,7 @@ ___
 
 ▸ **refreshToken**(`token`: string): *string*
 
-*Defined in [utils/Endpoints.ts:69](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L69)*
+*Defined in [utils/Endpoints.ts:69](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L69)*
 
 Refresh Token
 
@@ -207,7 +207,7 @@ ___
 
 ▸ **tradeToken**(): *string*
 
-*Defined in [utils/Endpoints.ts:77](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L77)*
+*Defined in [utils/Endpoints.ts:77](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L77)*
 
 Trade Token
 
@@ -219,7 +219,7 @@ ___
 
 ▸ **transfers**(`id`: string): *string*
 
-*Defined in [utils/Endpoints.ts:85](https://github.com/edmundpf/webull-api-ts/blob/0df93d7/src/utils/Endpoints.ts#L85)*
+*Defined in [utils/Endpoints.ts:85](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/utils/Endpoints.ts#L85)*
 
 Transfers
 
