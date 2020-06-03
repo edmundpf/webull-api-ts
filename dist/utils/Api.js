@@ -331,7 +331,7 @@ class Api {
                 }
             }
             for (let transfer of transfers) {
-                if (transfer.status == 'COMPLETED') {
+                if (transfer.subStatus == 'COMPLETED') {
                     details.push(Object.assign(Object.assign({}, defaultRecord), { type: 'transfer', direction: transfer.direction == 'IN' ? 'credit' : 'debit', date: new Date(transfer.updateTime).toISOString(), amount: transfer.amount, legs: [] }));
                 }
             }

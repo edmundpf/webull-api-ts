@@ -1,11 +1,11 @@
 {
   "name": "webull-api-ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Webull trading API for node-js",
   "main": "./dist/index.js",
   "files": [
-		"/dist/index.js",
-		"/dist/index.d.ts",
+    "/dist/index.js",
+    "/dist/index.d.ts",
     "/dist/utils"
   ],
   "scripts": {
@@ -40,7 +40,7 @@
     "@types/mocha": "*",
     "@types/node": "*",
     "chai": "*",
-    "mocha": "*",
+    "mocha": "^7.2.0",
     "typedoc": "*",
     "typedoc-plugin-markdown": "*"
   },

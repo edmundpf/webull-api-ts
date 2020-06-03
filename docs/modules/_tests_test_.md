@@ -14,4 +14,4 @@
 
 • **should**: *Should* = chai.should()
 
-*Defined in [tests/test.ts:3](https://github.com/edmundpf/webull-api-ts/blob/6b2fcd5/src/tests/test.ts#L3)*
+*Defined in [tests/test.ts:3](https://github.com/edmundpf/webull-api-ts/blob/99d2d69/src/tests/test.ts#L3)*

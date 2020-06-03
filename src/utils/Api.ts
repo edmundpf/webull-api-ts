@@ -399,7 +399,7 @@ export default class Api {
 			}
 		}
 		for (let transfer of transfers) {
-			if (transfer.status == 'COMPLETED') {
+			if (transfer.subStatus == 'COMPLETED') {
 				details.push({
 					...defaultRecord,
 					type: 'transfer',
