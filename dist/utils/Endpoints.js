@@ -34,7 +34,14 @@ class Endpoints {
      * Login
      */
     login() {
-        return `${this.userBrokerUrl}/passport/login/account`;
+        return `${this.userUrl}/passport/login/v3/account`;
+    }
+    /**
+     * MFA (multi-factor authentification)
+     */
+    mfa(email, accountType, deviceId, codeType, regionCode) {
+        return `${this.userUrl}/passport/verificationCode/sendCode?account=${email}` +
+            `&accountType=${accountType}&deviceId=${deviceId}&codeType=${codeType}&regionCode=${regionCode}`;
     }
     /**
      * Orders

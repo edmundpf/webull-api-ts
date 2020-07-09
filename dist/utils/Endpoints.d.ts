@@ -28,6 +28,10 @@ export default class Endpoints {
      */
     login(): string;
     /**
+     * MFA (multi-factor authentification)
+     */
+    mfa(email: string, accountType: number, deviceId: string, codeType: number, regionCode: number): string;
+    /**
      * Orders
      */
     orders(id: string, dateString: string, pageSize: string, createTime: string): string;

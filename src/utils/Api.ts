@@ -12,6 +12,7 @@ import {
 	passwordHash,
 	defaultPageSize
 } from './values'
+import { runInThisContext } from 'vm'
 const packageInfo = require('../../package.json')
 
 // Init Store
@@ -80,6 +81,11 @@ export default class Api {
 		args = {
 			reset: false,
 			retries: 0,
+			username: '',
+			password: '',
+			tradePin: '',
+			deviceId: '',
+			mfaCode: null,
 			...args,
 		}
 		if (args.retries >= 4) {
@@ -92,12 +98,13 @@ export default class Api {
 		let deviceId: string = ''
 		let hashedPassword: string = ''
 		let authResponse: any = null
-		let authData: any = {}
-		const retryLogin = async (message: string, response?: any) => {
-			if (response != null && response.msg != null) {
-				print.log(response.msg)
+		const retryLogin = async (message: string, response?: any, mfaCode?: string) => {
+			if (mfaCode == null) {
+				if (response != null && response.msg != null) {
+					print.log(response.msg)
+				}
+				print.warn(`${message}, please try again.`)
 			}
-			print.warn(`${message}, please try again.`)
 			store.write({
 				...defaultData,
 				...store.data,
@@ -108,7 +115,12 @@ export default class Api {
 			})
 			return await this.login({
 				reset: args.reset,
-				retries: args.retries + 1
+				retries: args.retries + 1,
+				mfaCode: mfaCode,
+				username: mfaCode != null ? username : '',
+				password: mfaCode != null ? password : '',
+				tradePin: mfaCode != null ? tradePin : '',
+				deviceId: mfaCode != null ? deviceId : ''
 			})
 		}
 		if (args.reset) {
@@ -118,7 +130,8 @@ export default class Api {
 				print.info('Sleeping 3 seconds before trying again.')
 				await this.sleep(3000)
 		}
-		if ([store.data.username, store.data.password, store.data.tradePin, store.data.deviceId].some((item) => item == '')) {
+		if ([store.data.username, store.data.password, store.data.tradePin, store.data.deviceId].some((item) => item == '') &&
+				[args.username, args.password, args.tradePin, args.deviceId].some((item) => item == '')) {
 			print.info('Please enter your credentials.')
 			const credentials = await this.credentialsPrompt()
 			username = credentials.username
@@ -127,26 +140,34 @@ export default class Api {
 			deviceId = this.getDeviceId()
 		}
 		else {
-			username = store.data.username
-			password = store.data.password
-			tradePin = store.data.tradePin
-			deviceId = store.data.deviceId
+			username = args.username || store.data.username
+			password = args.password || store.data.password
+			tradePin = args.tradePin || store.data.tradePin
+			deviceId = args.deviceId || store.data.deviceId
 		}
 		hashedPassword = md5(passwordHash + password)
 		if (store.data.tokenExpiry == '' || new Date(Date.now() - 5000).toISOString() >= new Date(store.data.tokenExpiry).toISOString()) {
 			print.info('Getting new access token.')
+			const authArgs: any = {
+				account: username,
+				pwd: hashedPassword,
+				deviceId: deviceId,
+				deviceName: deviceId,
+				grade: 1,
+				regionId: 1,
+				accountType: 2,
+			}
+			if (args.mfaCode != null) {
+				authArgs.extInfo = { verificationCode: args.mfaCode }
+			}
 			authResponse = await this.post(
 				endpoints.login(),
+				authArgs,
 				{
-					account: username,
-					pwd: hashedPassword,
-					deviceId: deviceId,
-					regionId: 1,
-					accountType: 2,
-				},
-				{ noHeaders: true }
+					deviceId: args.mfaCode != null ? deviceId : null,
+					noHeaders: args.mfaCode != null ? false : true
+				}
 			)
-			authData = authResponse.data
 		}
 		else {
 			print.info('Refreshing access token.')
@@ -154,15 +175,15 @@ export default class Api {
 			this.accessToken = store.data.accessToken
 			this.refreshToken = store.data.refreshToken
 			authResponse = await this.refreshLogin()
-			authData = authResponse
 		}
-		if (this.validResponse(authResponse)) {
-			this.uuid = authData.uuid || store.data.uuid
+		const isValidAuth = this.validResponse(authResponse)
+		if (isValidAuth) {
+			this.uuid = authResponse.uuid || store.data.uuid
 			this.username = username
 			this.deviceId = deviceId
-			this.accessToken = authData.accessToken
-			this.refreshToken = authData.refreshToken
-			this.tokenExpiry = authData.tokenExpireTime
+			this.accessToken = authResponse.accessToken
+			this.refreshToken = authResponse.refreshToken
+			this.tokenExpiry = authResponse.tokenExpireTime
 			if (store.data.accountId == '') {
 				const accountId = await this.getAccountId()
 				if (!accountId) {
@@ -211,6 +232,24 @@ export default class Api {
 			}
 			print.success(`${this.username} logged in.`)
 			return true
+		}
+		else if (!isValidAuth && authResponse.data.msg.includes('deviceId')) {
+			print.warn(`Multi-Factor Authentification (MFA) required. Please check your email: ${username}`)
+			const mfaResponse = await this.get(endpoints.mfa(username, 2, deviceId, 5, 1))
+			if (mfaResponse.success) {
+				const mfaPrompt = await inquirer.prompt([
+					{
+						type: 'input',
+						name: 'code',
+						validate: this.requiredValue,
+						message: 'Enter MFA code:',
+					},
+				])
+				return await retryLogin('', {}, mfaPrompt.code)
+			}
+			else {
+				return await retryLogin('Could not get MFA email', mfaResponse)
+			}
 		}
 		else {
 			return await retryLogin('Login was unsuccessful', authResponse)
@@ -470,28 +509,32 @@ export default class Api {
 	 */
 
 	private async credentialsPrompt() {
-		const requiredVal = (text: string) => {
-			return text.length > 0 ? true : 'Field is required.'
+		const requiredValidEmail = (text: string) => {
+			const requiredText = this.requiredValue(text)
+			if (requiredText !== true) {
+				return requiredText
+			}
+			return this.validEmail(text)
 		}
 		const result = await inquirer.prompt([
 			{
 				type: 'input',
 				name: 'username',
-				validate: requiredVal,
-				message: 'Enter username:',
+				validate: requiredValidEmail,
+				message: 'Enter username (email):',
 			},
 			{
 				type: 'password',
 				name: 'password',
 				mask: true,
-				validate: requiredVal,
+				validate: this.requiredValue,
 				message: 'Enter password:',
 			},
 			{
 				type: 'password',
 				name: 'tradePin',
 				mask: true,
-				validate: requiredVal,
+				validate: this.requiredValue,
 				message: 'Enter trading pin:',
 			},
 		])
@@ -514,6 +557,7 @@ export default class Api {
 		try {
 			args = {
 				time: false,
+				deviceId: null,
 				tradeToken: false,
 				noHeaders: false,
 				...args,
@@ -525,7 +569,7 @@ export default class Api {
 			return this.serializeResponse(response)
 		}
 		catch (error) {
-			this.errorHandler(error)
+			return this.errorHandler(error)
 		}
 	}
 
@@ -537,6 +581,7 @@ export default class Api {
 		try {
 			args = {
 				time: false,
+				deviceId: null,
 				tradeToken: false,
 				noHeaders: false,
 				...args,
@@ -549,7 +594,7 @@ export default class Api {
 			return this.serializeResponse(response)
 		}
 		catch (error) {
-			this.errorHandler(error)
+			return this.errorHandler(error)
 		}
 	}
 
@@ -578,14 +623,14 @@ export default class Api {
 
 	private getHeaders(args: any) {
 		const headers: any = {
-			did: this.deviceId,
-			access_token: this.accessToken,
-		}
-		if (args.time) {
-			headers.t_time = String(new Date().getTime())
+			did: this.deviceId || args.deviceId,
+			access_token: this.accessToken || null,
 		}
 		if (args.tradeToken) {
 			headers.t_token = this.tradeToken
+		}
+		if (args.time) {
+			headers.t_time = String(new Date().getTime())
 		}
 		return headers
 	}
@@ -603,16 +648,35 @@ export default class Api {
 	 */
 
 	private errorHandler(error: any) {
-		print.error(error)
 		if (error.response != null && error.response.data != null) {
-			return error.response.data
+			return {
+				success: false,
+				data: error.response.data
+			}
 		}
 		else {
 			return {
 				...serializeError(error),
 				isError: true,
+				success: false
 			}
 		}
+	}
+
+	/**
+	 * Required Value
+	 */
+
+	private requiredValue(text: string) {
+		return text.length > 0 ? true : 'Field is required.'
+	}
+
+	/**
+	 * Valid Email
+	 */
+
+	private validEmail(text: string) {
+		return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(text) ? true : 'Must enter valid email address.'
 	}
 
 }

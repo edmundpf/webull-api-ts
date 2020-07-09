@@ -20,5 +20,9 @@ const Api = require('webull-api-ts').default
 const api = new Api()
 ```
 
+## Change Log
+* v0.0.3
+	* Added MFA support for email accounts
+
 ## Documentation
 * [Package Docs](docs/globals.md)

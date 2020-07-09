@@ -65,7 +65,7 @@ class Api {
      */
     login(args) {
         return __awaiter(this, void 0, void 0, function* () {
-            args = Object.assign({ reset: false, retries: 0 }, args);
+            args = Object.assign({ reset: false, retries: 0, username: '', password: '', tradePin: '', deviceId: '', mfaCode: null }, args);
             if (args.retries >= 4) {
                 print.warn('Could not login after 3 retries, will exit.');
                 return process.exit(0);
@@ -76,16 +76,22 @@ class Api {
             let deviceId = '';
             let hashedPassword = '';
             let authResponse = null;
-            let authData = {};
-            const retryLogin = (message, response) => __awaiter(this, void 0, void 0, function* () {
-                if (response != null && response.msg != null) {
-                    print.log(response.msg);
+            const retryLogin = (message, response, mfaCode) => __awaiter(this, void 0, void 0, function* () {
+                if (mfaCode == null) {
+                    if (response != null && response.msg != null) {
+                        print.log(response.msg);
+                    }
+                    print.warn(`${message}, please try again.`);
                 }
-                print.warn(`${message}, please try again.`);
                 store.write(Object.assign(Object.assign(Object.assign({}, values_1.defaultData), store.data), { tradeToken: '', accessToken: '', refreshToken: '', tokenExpiry: '' }));
                 return yield this.login({
                     reset: args.reset,
-                    retries: args.retries + 1
+                    retries: args.retries + 1,
+                    mfaCode: mfaCode,
+                    username: mfaCode != null ? username : '',
+                    password: mfaCode != null ? password : '',
+                    tradePin: mfaCode != null ? tradePin : '',
+                    deviceId: mfaCode != null ? deviceId : ''
                 });
             });
             if (args.reset) {
@@ -95,7 +101,8 @@ class Api {
                 print.info('Sleeping 3 seconds before trying again.');
                 yield this.sleep(3000);
             }
-            if ([store.data.username, store.data.password, store.data.tradePin, store.data.deviceId].some((item) => item == '')) {
+            if ([store.data.username, store.data.password, store.data.tradePin, store.data.deviceId].some((item) => item == '') &&
+                [args.username, args.password, args.tradePin, args.deviceId].some((item) => item == '')) {
                 print.info('Please enter your credentials.');
                 const credentials = yield this.credentialsPrompt();
                 username = credentials.username;
@@ -104,22 +111,30 @@ class Api {
                 deviceId = this.getDeviceId();
             }
             else {
-                username = store.data.username;
-                password = store.data.password;
-                tradePin = store.data.tradePin;
-                deviceId = store.data.deviceId;
+                username = args.username || store.data.username;
+                password = args.password || store.data.password;
+                tradePin = args.tradePin || store.data.tradePin;
+                deviceId = args.deviceId || store.data.deviceId;
             }
             hashedPassword = md5_1.default(values_1.passwordHash + password);
             if (store.data.tokenExpiry == '' || new Date(Date.now() - 5000).toISOString() >= new Date(store.data.tokenExpiry).toISOString()) {
                 print.info('Getting new access token.');
-                authResponse = yield this.post(endpoints.login(), {
+                const authArgs = {
                     account: username,
                     pwd: hashedPassword,
                     deviceId: deviceId,
+                    deviceName: deviceId,
+                    grade: 1,
                     regionId: 1,
                     accountType: 2,
-                }, { noHeaders: true });
-                authData = authResponse.data;
+                };
+                if (args.mfaCode != null) {
+                    authArgs.extInfo = { verificationCode: args.mfaCode };
+                }
+                authResponse = yield this.post(endpoints.login(), authArgs, {
+                    deviceId: args.mfaCode != null ? deviceId : null,
+                    noHeaders: args.mfaCode != null ? false : true
+                });
             }
             else {
                 print.info('Refreshing access token.');
@@ -127,15 +142,15 @@ class Api {
                 this.accessToken = store.data.accessToken;
                 this.refreshToken = store.data.refreshToken;
                 authResponse = yield this.refreshLogin();
-                authData = authResponse;
             }
-            if (this.validResponse(authResponse)) {
-                this.uuid = authData.uuid || store.data.uuid;
+            const isValidAuth = this.validResponse(authResponse);
+            if (isValidAuth) {
+                this.uuid = authResponse.uuid || store.data.uuid;
                 this.username = username;
                 this.deviceId = deviceId;
-                this.accessToken = authData.accessToken;
-                this.refreshToken = authData.refreshToken;
-                this.tokenExpiry = authData.tokenExpireTime;
+                this.accessToken = authResponse.accessToken;
+                this.refreshToken = authResponse.refreshToken;
+                this.tokenExpiry = authResponse.tokenExpireTime;
                 if (store.data.accountId == '') {
                     const accountId = yield this.getAccountId();
                     if (!accountId) {
@@ -176,6 +191,24 @@ class Api {
                 }
                 print.success(`${this.username} logged in.`);
                 return true;
+            }
+            else if (!isValidAuth && authResponse.data.msg.includes('deviceId')) {
+                print.warn(`Multi-Factor Authentification (MFA) required. Please check your email: ${username}`);
+                const mfaResponse = yield this.get(endpoints.mfa(username, 2, deviceId, 5, 1));
+                if (mfaResponse.success) {
+                    const mfaPrompt = yield inquirer_1.default.prompt([
+                        {
+                            type: 'input',
+                            name: 'code',
+                            validate: this.requiredValue,
+                            message: 'Enter MFA code:',
+                        },
+                    ]);
+                    return yield retryLogin('', {}, mfaPrompt.code);
+                }
+                else {
+                    return yield retryLogin('Could not get MFA email', mfaResponse);
+                }
             }
             else {
                 return yield retryLogin('Login was unsuccessful', authResponse);
@@ -387,28 +420,32 @@ class Api {
      */
     credentialsPrompt() {
         return __awaiter(this, void 0, void 0, function* () {
-            const requiredVal = (text) => {
-                return text.length > 0 ? true : 'Field is required.';
+            const requiredValidEmail = (text) => {
+                const requiredText = this.requiredValue(text);
+                if (requiredText !== true) {
+                    return requiredText;
+                }
+                return this.validEmail(text);
             };
             const result = yield inquirer_1.default.prompt([
                 {
                     type: 'input',
                     name: 'username',
-                    validate: requiredVal,
-                    message: 'Enter username:',
+                    validate: requiredValidEmail,
+                    message: 'Enter username (email):',
                 },
                 {
                     type: 'password',
                     name: 'password',
                     mask: true,
-                    validate: requiredVal,
+                    validate: this.requiredValue,
                     message: 'Enter password:',
                 },
                 {
                     type: 'password',
                     name: 'tradePin',
                     mask: true,
-                    validate: requiredVal,
+                    validate: this.requiredValue,
                     message: 'Enter trading pin:',
                 },
             ]);
@@ -427,12 +464,12 @@ class Api {
     get(url, args) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                args = Object.assign({ time: false, tradeToken: false, noHeaders: false }, args);
+                args = Object.assign({ time: false, deviceId: null, tradeToken: false, noHeaders: false }, args);
                 const response = yield this.session.get(url, args.noHeaders ? null : { headers: this.getHeaders(args) });
                 return this.serializeResponse(response);
             }
             catch (error) {
-                this.errorHandler(error);
+                return this.errorHandler(error);
             }
         });
     }
@@ -442,12 +479,12 @@ class Api {
     post(url, data, args) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                args = Object.assign({ time: false, tradeToken: false, noHeaders: false }, args);
+                args = Object.assign({ time: false, deviceId: null, tradeToken: false, noHeaders: false }, args);
                 const response = yield this.session.post(url, data, args.noHeaders ? null : { headers: this.getHeaders(args) });
                 return this.serializeResponse(response);
             }
             catch (error) {
-                this.errorHandler(error);
+                return this.errorHandler(error);
             }
         });
     }
@@ -470,14 +507,14 @@ class Api {
      */
     getHeaders(args) {
         const headers = {
-            did: this.deviceId,
-            access_token: this.accessToken,
+            did: this.deviceId || args.deviceId,
+            access_token: this.accessToken || null,
         };
-        if (args.time) {
-            headers.t_time = String(new Date().getTime());
-        }
         if (args.tradeToken) {
             headers.t_token = this.tradeToken;
+        }
+        if (args.time) {
+            headers.t_time = String(new Date().getTime());
         }
         return headers;
     }
@@ -491,13 +528,27 @@ class Api {
      * Error Handler
      */
     errorHandler(error) {
-        print.error(error);
         if (error.response != null && error.response.data != null) {
-            return error.response.data;
+            return {
+                success: false,
+                data: error.response.data
+            };
         }
         else {
-            return Object.assign(Object.assign({}, serialize_error_1.serializeError(error)), { isError: true });
+            return Object.assign(Object.assign({}, serialize_error_1.serializeError(error)), { isError: true, success: false });
         }
+    }
+    /**
+     * Required Value
+     */
+    requiredValue(text) {
+        return text.length > 0 ? true : 'Field is required.';
+    }
+    /**
+     * Valid Email
+     */
+    validEmail(text) {
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(text) ? true : 'Must enter valid email address.';
     }
 }
 exports.default = Api;

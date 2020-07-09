@@ -100,4 +100,12 @@ export default class Api {
      * Error Handler
      */
     private errorHandler;
+    /**
+     * Required Value
+     */
+    private requiredValue;
+    /**
+     * Valid Email
+     */
+    private validEmail;
 }
