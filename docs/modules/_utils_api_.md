@@ -21,7 +21,7 @@
 
 • **endpoints**: *[Endpoints](../classes/_utils_endpoints_.endpoints.md)‹›* = new Endpoints()
 
-*Defined in [utils/Api.ts:28](https://github.com/edmundpf/webull-api-ts/blob/ecd782b/src/utils/Api.ts#L28)*
+*Defined in [utils/Api.ts:28](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L28)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **packageInfo**: *any* = require('../../package.json')
 
-*Defined in [utils/Api.ts:16](https://github.com/edmundpf/webull-api-ts/blob/ecd782b/src/utils/Api.ts#L16)*
+*Defined in [utils/Api.ts:16](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L16)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **print**: *[Print](../classes/_utils_print_.print.md)‹›* = new Print()
 
-*Defined in [utils/Api.ts:32](https://github.com/edmundpf/webull-api-ts/blob/ecd782b/src/utils/Api.ts#L32)*
+*Defined in [utils/Api.ts:32](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L32)*
 
 ___
 
@@ -49,4 +49,4 @@ ___
 	encryptedFields: Object.keys(defaultData),
 })
 
-*Defined in [utils/Api.ts:20](https://github.com/edmundpf/webull-api-ts/blob/ecd782b/src/utils/Api.ts#L20)*
+*Defined in [utils/Api.ts:20](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L20)*

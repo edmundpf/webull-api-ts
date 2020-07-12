@@ -1,17 +1,18 @@
 {
   "name": "webull-api-ts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Webull trading API for node-js",
   "main": "./dist/index.js",
   "files": [
     "/dist/index.js",
     "/dist/index.d.ts",
-    "/dist/utils"
+    "/dist/utils",
+    "/dist/tests"
   ],
   "scripts": {
     "test": "npx mocha dist/tests",
-		"doc": "npx typedoc",
-		"start": "node ./dist/driver.js"
+    "doc": "npx typedoc",
+    "start": "node ./dist/driver.js"
   },
   "repository": {
     "type": "git",

@@ -19,6 +19,8 @@ const api = new Api()
 ## Change Log
 * v0.0.3
 	* Added MFA support for email accounts
+* v0.0.4
+	* Added test dir to NPM repo
 
 ## Documentation
 * [Package Docs](docs/globals.md)
