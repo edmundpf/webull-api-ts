@@ -64,6 +64,7 @@ class Api {
      * Login
      */
     login(args) {
+        var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function* () {
             args = Object.assign({ reset: false, retries: 0, username: '', password: '', tradePin: '', deviceId: '', mfaCode: null }, args);
             if (args.retries >= 4) {
@@ -133,7 +134,6 @@ class Api {
                 }
                 authResponse = yield this.post(endpoints.login(), authArgs, {
                     deviceId: args.mfaCode != null ? deviceId : null,
-                    noHeaders: args.mfaCode != null ? false : true
                 });
             }
             else {
@@ -144,7 +144,7 @@ class Api {
                 authResponse = yield this.refreshLogin();
             }
             const isValidAuth = this.validResponse(authResponse);
-            if (isValidAuth) {
+            if (isValidAuth && authResponse.accessToken) {
                 this.uuid = authResponse.uuid || store.data.uuid;
                 this.username = username;
                 this.deviceId = deviceId;
@@ -192,7 +192,7 @@ class Api {
                 print.success(`${this.username} logged in.`);
                 return true;
             }
-            else if (!isValidAuth && authResponse.data.msg.includes('deviceId')) {
+            else if (String((_b = (_a = authResponse) === null || _a === void 0 ? void 0 : _a.data) === null || _b === void 0 ? void 0 : _b.msg).includes('deviceId') || ((_c = authResponse) === null || _c === void 0 ? void 0 : _c.extInfo)) {
                 print.warn(`Multi-Factor Authentification (MFA) required. Please check your email: ${username}`);
                 const mfaResponse = yield this.get(endpoints.mfa(username, 2, deviceId, 5, 1));
                 if (mfaResponse.success) {

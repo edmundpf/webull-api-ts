@@ -165,7 +165,6 @@ export default class Api {
 				authArgs,
 				{
 					deviceId: args.mfaCode != null ? deviceId : null,
-					noHeaders: args.mfaCode != null ? false : true
 				}
 			)
 		}
@@ -177,7 +176,7 @@ export default class Api {
 			authResponse = await this.refreshLogin()
 		}
 		const isValidAuth = this.validResponse(authResponse)
-		if (isValidAuth) {
+		if (isValidAuth && authResponse.accessToken) {
 			this.uuid = authResponse.uuid || store.data.uuid
 			this.username = username
 			this.deviceId = deviceId
@@ -233,7 +232,7 @@ export default class Api {
 			print.success(`${this.username} logged in.`)
 			return true
 		}
-		else if (!isValidAuth && authResponse.data.msg.includes('deviceId')) {
+		else if (String(authResponse?.data?.msg).includes('deviceId') || authResponse?.extInfo) {
 			print.warn(`Multi-Factor Authentification (MFA) required. Please check your email: ${username}`)
 			const mfaResponse = await this.get(endpoints.mfa(username, 2, deviceId, 5, 1))
 			if (mfaResponse.success) {

@@ -10,6 +10,21 @@
     "/dist/tests"
   ],
   "scripts": {
+		"compile": "tsc",
+    "check": "tsc --noEmit",
+    "watch": "tsc --watch",
+    "lint": "npx eslint .",
+    "lint-fix": "npx eslint --fix .",
+    "format": "npx prettier --write .",
+    "dev-checkout": "git checkout dev",
+    "commit": "npm run dev-checkout && tsc && npm run test && git add . && git commit -m",
+    "bump-patch": "npm run dev-checkout && npm version patch",
+    "bump-minor": "npm run dev-checkout && npm version minor",
+    "bump-major": "npm run dev-checkout && npm version major",
+    "release": "npm run dev-checkout && git push origin dev && git checkout master && git merge dev && git push origin master && git push --tags && git checkout dev",
+    "release-patch": "npm run bump-patch && npm run doc && npm run release",
+    "release-minor": "npm run bump-minor && npm run doc && npm run release",
+		"release-major": "npm run bump-major && npm run doc && npm run release",
     "test": "npx mocha dist/tests",
     "doc": "npx typedoc",
     "start": "node ./dist/driver.js"
