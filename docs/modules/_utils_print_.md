@@ -24,7 +24,7 @@
 
 • **black**: *"[30m"* = "[30m"
 
-*Defined in [utils/Print.ts:6](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L6)*
+*Defined in [utils/Print.ts:6](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L6)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **cyan**: *"[36m"* = "[36m"
 
-*Defined in [utils/Print.ts:9](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L9)*
+*Defined in [utils/Print.ts:9](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L9)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **green**: *"[32m"* = "[32m"
 
-*Defined in [utils/Print.ts:8](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L8)*
+*Defined in [utils/Print.ts:8](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L8)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **grey**: *"[90m"* = "[90m"
 
-*Defined in [utils/Print.ts:7](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L7)*
+*Defined in [utils/Print.ts:7](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L7)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **redBackground**: *"[41m"* = "[41m"
 
-*Defined in [utils/Print.ts:10](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L10)*
+*Defined in [utils/Print.ts:10](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L10)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **reset**: *"[0m"* = "[0m"
 
-*Defined in [utils/Print.ts:5](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L5)*
+*Defined in [utils/Print.ts:5](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L5)*
 
 ___
 
@@ -72,4 +72,4 @@ ___
 
 • **yellowBackground**: *"[43m"* = "[43m"
 
-*Defined in [utils/Print.ts:11](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L11)*
+*Defined in [utils/Print.ts:11](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L11)*

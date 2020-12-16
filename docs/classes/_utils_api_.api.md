@@ -59,7 +59,7 @@ API Class
 
 \+ **new Api**(): *[Api](_utils_api_.api.md)*
 
-*Defined in [utils/Api.ts:49](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L49)*
+*Defined in [utils/Api.ts:49](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L49)*
 
 Constructor
 
@@ -71,7 +71,7 @@ Constructor
 
 • **accessToken**: *string*
 
-*Defined in [utils/Api.ts:47](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L47)*
+*Defined in [utils/Api.ts:47](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L47)*
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 • **accountId**: *string*
 
-*Defined in [utils/Api.ts:45](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L45)*
+*Defined in [utils/Api.ts:45](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L45)*
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 • **deviceId**: *string*
 
-*Defined in [utils/Api.ts:44](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L44)*
+*Defined in [utils/Api.ts:44](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L44)*
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 • **headers**: *any*
 
-*Defined in [utils/Api.ts:40](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L40)*
+*Defined in [utils/Api.ts:40](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L40)*
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 • **refreshToken**: *string*
 
-*Defined in [utils/Api.ts:48](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L48)*
+*Defined in [utils/Api.ts:48](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L48)*
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 • **session**: *any*
 
-*Defined in [utils/Api.ts:41](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L41)*
+*Defined in [utils/Api.ts:41](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L41)*
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 • **tokenExpiry**: *string*
 
-*Defined in [utils/Api.ts:49](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L49)*
+*Defined in [utils/Api.ts:49](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L49)*
 
 ___
 
@@ -127,7 +127,7 @@ ___
 
 • **tradeToken**: *string*
 
-*Defined in [utils/Api.ts:46](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L46)*
+*Defined in [utils/Api.ts:46](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L46)*
 
 ___
 
@@ -135,7 +135,7 @@ ___
 
 • **username**: *string*
 
-*Defined in [utils/Api.ts:43](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L43)*
+*Defined in [utils/Api.ts:43](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L43)*
 
 ___
 
@@ -143,7 +143,7 @@ ___
 
 • **uuid**: *string*
 
-*Defined in [utils/Api.ts:42](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L42)*
+*Defined in [utils/Api.ts:42](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L42)*
 
 ## Methods
 
@@ -151,7 +151,7 @@ ___
 
 ▸ **credentialsPrompt**(): *Promise‹Object & Object & Object & Object & Object›*
 
-*Defined in [utils/Api.ts:511](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L511)*
+*Defined in [utils/Api.ts:510](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L510)*
 
 Credentials Prompt
 
@@ -163,7 +163,7 @@ ___
 
 ▸ **errorHandler**(`error`: any): *any*
 
-*Defined in [utils/Api.ts:650](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L650)*
+*Defined in [utils/Api.ts:649](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L649)*
 
 Error Handler
 
@@ -181,7 +181,7 @@ ___
 
 ▸ **get**(`url`: string, `args?`: any): *Promise‹any›*
 
-*Defined in [utils/Api.ts:556](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L556)*
+*Defined in [utils/Api.ts:555](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L555)*
 
 Get Request
 
@@ -200,7 +200,7 @@ ___
 
 ▸ **getAccount**(): *Promise‹any›*
 
-*Defined in [utils/Api.ts:263](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L263)*
+*Defined in [utils/Api.ts:262](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L262)*
 
 Get Account Info
 
@@ -212,7 +212,7 @@ ___
 
 ▸ **getAccountDetails**(): *Promise‹any›*
 
-*Defined in [utils/Api.ts:272](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L272)*
+*Defined in [utils/Api.ts:271](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L271)*
 
 Get Account Details
 
@@ -224,7 +224,7 @@ ___
 
 ▸ **getAccountHistory**(`args?`: any): *Promise‹any[]›*
 
-*Defined in [utils/Api.ts:387](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L387)*
+*Defined in [utils/Api.ts:386](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L386)*
 
 Get Account History including orders and transfers (only tested with stock and long calls/puts)
 
@@ -242,7 +242,7 @@ ___
 
 ▸ **getAccountId**(): *Promise‹string | false›*
 
-*Defined in [utils/Api.ts:468](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L468)*
+*Defined in [utils/Api.ts:467](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L467)*
 
 Get Account ID
 
@@ -254,7 +254,7 @@ ___
 
 ▸ **getDeposits**(): *Promise‹any›*
 
-*Defined in [utils/Api.ts:311](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L311)*
+*Defined in [utils/Api.ts:310](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L310)*
 
 Get Deposits
 
@@ -266,7 +266,7 @@ ___
 
 ▸ **getDeviceId**(): *string*
 
-*Defined in [utils/Api.ts:460](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L460)*
+*Defined in [utils/Api.ts:459](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L459)*
 
 Get Device ID
 
@@ -278,7 +278,7 @@ ___
 
 ▸ **getHeaders**(`args`: any): *any*
 
-*Defined in [utils/Api.ts:624](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L624)*
+*Defined in [utils/Api.ts:623](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L623)*
 
 Get Headers
 
@@ -296,7 +296,7 @@ ___
 
 ▸ **getOpenOrders**(): *Promise‹any›*
 
-*Defined in [utils/Api.ts:302](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L302)*
+*Defined in [utils/Api.ts:301](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L301)*
 
 Get Open Orders
 
@@ -308,7 +308,7 @@ ___
 
 ▸ **getOrderHistory**(`args?`: any): *Promise‹any[]›*
 
-*Defined in [utils/Api.ts:320](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L320)*
+*Defined in [utils/Api.ts:319](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L319)*
 
 Get Order History
 
@@ -326,7 +326,7 @@ ___
 
 ▸ **getPositions**(): *Promise‹any›*
 
-*Defined in [utils/Api.ts:293](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L293)*
+*Defined in [utils/Api.ts:292](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L292)*
 
 Get Positions
 
@@ -338,7 +338,7 @@ ___
 
 ▸ **getTradeToken**(`tradePin`: string): *Promise‹any›*
 
-*Defined in [utils/Api.ts:494](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L494)*
+*Defined in [utils/Api.ts:493](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L493)*
 
 Get Trade Token
 
@@ -356,7 +356,7 @@ ___
 
 ▸ **getTransferHistory**(): *Promise‹any[]›*
 
-*Defined in [utils/Api.ts:356](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L356)*
+*Defined in [utils/Api.ts:355](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L355)*
 
 Get Transfer History
 
@@ -368,7 +368,7 @@ ___
 
 ▸ **login**(`args?`: any): *any*
 
-*Defined in [utils/Api.ts:80](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L80)*
+*Defined in [utils/Api.ts:80](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L80)*
 
 Login
 
@@ -386,7 +386,7 @@ ___
 
 ▸ **post**(`url`: string, `data`: any, `args?`: any): *Promise‹any›*
 
-*Defined in [utils/Api.ts:580](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L580)*
+*Defined in [utils/Api.ts:579](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L579)*
 
 Post Request
 
@@ -406,7 +406,7 @@ ___
 
 ▸ **refreshLogin**(): *Promise‹any›*
 
-*Defined in [utils/Api.ts:482](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L482)*
+*Defined in [utils/Api.ts:481](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L481)*
 
 Refresh Login Token
 
@@ -418,7 +418,7 @@ ___
 
 ▸ **requiredValue**(`text`: string): *true | "Field is required."*
 
-*Defined in [utils/Api.ts:670](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L670)*
+*Defined in [utils/Api.ts:669](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L669)*
 
 Required Value
 
@@ -436,7 +436,7 @@ ___
 
 ▸ **serializeResponse**(`response`: any): *any*
 
-*Defined in [utils/Api.ts:605](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L605)*
+*Defined in [utils/Api.ts:604](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L604)*
 
 Serialize Response
 
@@ -454,7 +454,7 @@ ___
 
 ▸ **sleep**(`ms`: number): *Promise‹unknown›*
 
-*Defined in [utils/Api.ts:548](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L548)*
+*Defined in [utils/Api.ts:547](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L547)*
 
 Sleep
 
@@ -472,7 +472,7 @@ ___
 
 ▸ **validEmail**(`text`: string): *true | "Must enter valid email address."*
 
-*Defined in [utils/Api.ts:678](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L678)*
+*Defined in [utils/Api.ts:677](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L677)*
 
 Valid Email
 
@@ -490,7 +490,7 @@ ___
 
 ▸ **validResponse**(`response`: any): *any*
 
-*Defined in [utils/Api.ts:642](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Api.ts#L642)*
+*Defined in [utils/Api.ts:641](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Api.ts#L641)*
 
 Check for valid response
 

@@ -36,7 +36,7 @@ Print Class
 
 \+ **new Print**(`args?`: any): *[Print](_utils_print_.print.md)*
 
-*Defined in [utils/Print.ts:19](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L19)*
+*Defined in [utils/Print.ts:19](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L19)*
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ Name | Type |
 
 • **print**: *boolean*
 
-*Defined in [utils/Print.ts:19](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L19)*
+*Defined in [utils/Print.ts:19](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L19)*
 
 ## Methods
 
@@ -60,7 +60,7 @@ Name | Type |
 
 ▸ **debug**(`value`: any): *any*
 
-*Defined in [utils/Print.ts:109](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L109)*
+*Defined in [utils/Print.ts:109](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L109)*
 
 Debug
 
@@ -78,7 +78,7 @@ ___
 
 ▸ **error**(`value`: any): *any*
 
-*Defined in [utils/Print.ts:81](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L81)*
+*Defined in [utils/Print.ts:81](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L81)*
 
 Error Method
 
@@ -96,7 +96,7 @@ ___
 
 ▸ **ifPrintEnabled**(`method`: Function): *any*
 
-*Defined in [utils/Print.ts:121](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L121)*
+*Defined in [utils/Print.ts:121](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L121)*
 
 If print enabled
 
@@ -114,7 +114,7 @@ ___
 
 ▸ **info**(`value`: any): *any*
 
-*Defined in [utils/Print.ts:49](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L49)*
+*Defined in [utils/Print.ts:49](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L49)*
 
 Info
 
@@ -132,7 +132,7 @@ ___
 
 ▸ **log**(`value`: any): *any*
 
-*Defined in [utils/Print.ts:98](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L98)*
+*Defined in [utils/Print.ts:98](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L98)*
 
 Log
 
@@ -150,7 +150,7 @@ ___
 
 ▸ **prefixText**(`prefix`: string, `value`: any): *string*
 
-*Defined in [utils/Print.ts:142](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L142)*
+*Defined in [utils/Print.ts:142](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L142)*
 
 Prefix Text
 
@@ -169,7 +169,7 @@ ___
 
 ▸ **success**(`value`: any): *any*
 
-*Defined in [utils/Print.ts:33](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L33)*
+*Defined in [utils/Print.ts:33](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L33)*
 
 Success
 
@@ -187,7 +187,7 @@ ___
 
 ▸ **timestampText**(`value`: any): *string*
 
-*Defined in [utils/Print.ts:134](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L134)*
+*Defined in [utils/Print.ts:134](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L134)*
 
 Timestamp Text
 
@@ -205,7 +205,7 @@ ___
 
 ▸ **warn**(`value`: any): *any*
 
-*Defined in [utils/Print.ts:65](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/utils/Print.ts#L65)*
+*Defined in [utils/Print.ts:65](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/utils/Print.ts#L65)*
 
 Warning
 

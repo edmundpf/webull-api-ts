@@ -14,7 +14,7 @@
 
 ▸ **driver**(): *Promise‹void›*
 
-*Defined in [driver.ts:7](https://github.com/edmundpf/webull-api-ts/blob/6bc4094/src/driver.ts#L7)*
+*Defined in [driver.ts:7](https://github.com/edmundpf/webull-api-ts/blob/23edda1/src/driver.ts#L7)*
 
 Driver
 
