@@ -1,6 +1,6 @@
 {
   "name": "webull-api-ts",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Webull trading API for node-js",
   "main": "./dist/index.js",
   "files": [
@@ -10,7 +10,7 @@
     "/dist/tests"
   ],
   "scripts": {
-		"compile": "tsc",
+    "compile": "tsc",
     "check": "tsc --noEmit",
     "watch": "tsc --watch",
     "lint": "npx eslint .",
@@ -24,7 +24,7 @@
     "release": "npm run dev-checkout && git push origin dev && git checkout master && git merge dev && git push origin master && git push --tags && git checkout dev",
     "release-patch": "npm run bump-patch && npm run doc && npm run release",
     "release-minor": "npm run bump-minor && npm run doc && npm run release",
-		"release-major": "npm run bump-major && npm run doc && npm run release",
+    "release-major": "npm run bump-major && npm run doc && npm run release",
     "test": "npx mocha dist/tests",
     "doc": "npx typedoc",
     "start": "node ./dist/driver.js"
