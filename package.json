@@ -62,7 +62,7 @@
     "typedoc-plugin-markdown": "*"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "date-fns": "^2.10.0",
     "inquirer": "^7.0.6",
     "json-config-ts": "^1.0.1",
