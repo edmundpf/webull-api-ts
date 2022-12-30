@@ -57,7 +57,7 @@
     "@types/mocha": "*",
     "@types/node": "*",
     "chai": "*",
-    "mocha": "^7.2.0",
+    "mocha": "^10.2.0",
     "typedoc": "*",
     "typedoc-plugin-markdown": "*"
   },
